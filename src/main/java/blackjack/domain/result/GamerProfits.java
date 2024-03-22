@@ -1,42 +1,34 @@
 package blackjack.domain.result;
 
-import blackjack.domain.gamer.Gamer;
 import blackjack.domain.gamer.Player;
-import blackjack.dto.profit.GamerProfitState;
-import blackjack.dto.profit.GamerProfitStates;
+import blackjack.dto.profit.GamerProfitStateDto;
+import blackjack.dto.profit.GamerProfitStatesDto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class GamerProfits {
-    private final Map<Player, Integer> playerProfits;
-    private final int dealerProfit;
+    private final Map<Player, BigDecimal> playerProfits;
+    private final BigDecimal dealerProfit;
 
-    public GamerProfits() {
-        this(new HashMap<>(), 0);
-    }
-
-    public GamerProfits(final Map<Player, Integer> playerProfits, int dealerProfit) {
+    public GamerProfits(final Map<Player, BigDecimal> playerProfits, BigDecimal dealerProfit) {
         this.playerProfits = new HashMap<>(playerProfits);
         this.dealerProfit = dealerProfit;
     }
 
-    public int getProfit(final Gamer gamer) {
-        return playerProfits.get(gamer);
-    }
-
-    public GamerProfitStates getGamerProfitStates() {
-        List<GamerProfitState> profitState = new ArrayList<>();
-        for (Map.Entry<Player, Integer> entry : playerProfits.entrySet()) {
-            profitState.add(new GamerProfitState(entry.getKey().getName(), entry.getValue()));
+    public GamerProfitStatesDto getGamerProfitStates() {
+        List<GamerProfitStateDto> profitState = new ArrayList<>();
+        for (Map.Entry<Player, BigDecimal> entry : playerProfits.entrySet()) {
+            profitState.add(new GamerProfitStateDto(entry.getKey().getName(), entry.getValue()));
         }
 
-        return new GamerProfitStates(profitState, dealerProfit);
+        return new GamerProfitStatesDto(profitState, dealerProfit);
     }
 
-    public int getDealerProfit() {
+    public BigDecimal getDealerProfit() {
         return dealerProfit;
     }
 

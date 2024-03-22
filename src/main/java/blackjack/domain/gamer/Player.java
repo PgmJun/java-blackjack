@@ -4,6 +4,8 @@ import blackjack.domain.betting.BettingMoney;
 import blackjack.domain.card.Cards;
 import blackjack.domain.result.GameResult;
 
+import java.math.BigDecimal;
+
 public final class Player extends Gamer {
     private final Name name;
     private final BettingMoney bettingMoney;
@@ -22,8 +24,8 @@ public final class Player extends Gamer {
         this.name = name;
     }
 
-    public int calculateProfit(final GameResult gameResult) {
-        return bettingMoney.calculateProfit(gameResult).intValue();
+    public BigDecimal calculateProfit(final GameResult gameResult) {
+        return bettingMoney.calculateProfit(gameResult);
     }
 
     public String getName() {

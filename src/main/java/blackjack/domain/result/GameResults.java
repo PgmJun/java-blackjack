@@ -4,15 +4,12 @@ import blackjack.domain.gamer.Dealer;
 import blackjack.domain.gamer.Player;
 import blackjack.domain.gamer.Players;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 public class GameResults {
     private final Map<Player, GameResult> gameResults;
-
-    public GameResults() {
-        this(new HashMap<>());
-    }
 
     public GameResults(final Map<Player, GameResult> gameResults) {
         this.gameResults = gameResults;
@@ -28,13 +25,13 @@ public class GameResults {
     }
 
     public GamerProfits calculateGamerProfits() {
-        Map<Player, Integer> playerProfits = new HashMap<>();
-        int dealerProfit = 0;
+        Map<Player, BigDecimal> playerProfits = new HashMap<>();
+        BigDecimal dealerProfit = BigDecimal.ZERO;
 
         for (Map.Entry<Player, GameResult> entry : gameResults.entrySet()) {
-            int playerProfit = entry.getKey().calculateProfit(entry.getValue());
+            BigDecimal playerProfit = entry.getKey().calculateProfit(entry.getValue());
             playerProfits.put(entry.getKey(), playerProfit);
-            dealerProfit -= playerProfit;
+            dealerProfit = dealerProfit.subtract(playerProfit);
         }
 
         return new GamerProfits(playerProfits, dealerProfit);

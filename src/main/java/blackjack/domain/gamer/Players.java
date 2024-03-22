@@ -1,7 +1,7 @@
 package blackjack.domain.gamer;
 
 import blackjack.domain.betting.BettingMoney;
-import blackjack.dto.gamer.PlayersState;
+import blackjack.dto.gamer.PlayersStateDto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,8 +53,8 @@ public class Players {
         }
     }
 
-    public PlayersState getInfos() {
-        return PlayersState.from(players);
+    public PlayersStateDto getInfos() {
+        return PlayersStateDto.from(players);
     }
 
     public List<Player> getPlayers() {

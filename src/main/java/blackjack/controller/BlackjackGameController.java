@@ -9,7 +9,7 @@ import blackjack.domain.gamer.Player;
 import blackjack.domain.gamer.Players;
 import blackjack.domain.result.GameResults;
 import blackjack.domain.result.GamerProfits;
-import blackjack.dto.gamer.PlayerState;
+import blackjack.dto.gamer.PlayerStateDto;
 import blackjack.view.InputView;
 import blackjack.view.OutputView;
 
@@ -72,7 +72,7 @@ public class BlackjackGameController {
     private void receivePlayerAdditionalCard(final Deck deck, final Player player) {
         while (!player.isBust() && inputView.readHitOrStand(player).isYes()) {
             player.receiveCard(deck.drawCard());
-            outputView.printCardsStatus(PlayerState.from(player));
+            outputView.printCardsStatus(PlayerStateDto.from(player));
         }
     }
 

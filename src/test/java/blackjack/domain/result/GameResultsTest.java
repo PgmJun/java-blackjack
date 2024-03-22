@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,8 +27,9 @@ public class GameResultsTest {
         GameResults gameResults = new GameResults(gameResultInfos);
 
         GamerProfits gamerProfits = gameResults.calculateGamerProfits();
+        System.out.println(gamerProfits);
 
         // then
-        Assertions.assertThat(gamerProfits.getDealerProfit()).isEqualTo(-30000);
+        Assertions.assertThat(gamerProfits.getDealerProfit()).isEqualTo(BigDecimal.valueOf(-30000));
     }
 }

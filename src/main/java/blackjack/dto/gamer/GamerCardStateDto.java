@@ -4,5 +4,5 @@ import blackjack.domain.card.Card;
 
 import java.util.List;
 
-public record GamerCardState(List<Card> cards, int score) {
+public record GamerCardStateDto(List<Card> cards, int score) {
 }
